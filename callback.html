@@ -6,6 +6,6 @@
 const p=new URLSearchParams(location.search);
 const m=document.getElementById('msg');
 if(p.get('error')){m.textContent='Authorization was not completed: '+(p.get('error_description')||p.get('error'));}
-else if(p.get('code')){m.textContent='TikTok account connected. Authorization received.';}
+else if(p.get('code')){m.textContent='TikTok account connected. Returning to the app…';location.replace('http://localhost:8765/callback'+location.search);}
 else{m.textContent='No authorization data found.';}
 </script></body></html>
