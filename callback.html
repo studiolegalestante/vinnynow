@@ -1,11 +1,12 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vinny Social Manager – Connected</title><link rel="stylesheet" href="style.css"></head><body>
 <h1>Vinny Social Manager</h1>
 <p id="msg">Processing TikTok authorization…</p>
+<p><a id="back" class="btn" style="display:none;background:#0a6f7a;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none">Return to Vinny Social Manager</a></p>
 <p class="meta">You can close this page after the connection is confirmed in the app.</p>
 <script>
 const p=new URLSearchParams(location.search);
 const m=document.getElementById('msg');
 if(p.get('error')){m.textContent='Authorization was not completed: '+(p.get('error_description')||p.get('error'));}
-else if(p.get('code')){m.textContent='TikTok account connected. Returning to the app…';location.replace('http://localhost:8765/callback'+location.search);}
+else if(p.get('code')){m.textContent='TikTok account connected.';const b=document.getElementById('back');b.href='http://localhost:8765/callback'+location.search;b.style.display='inline-block';try{location.replace(b.href);}catch(e){}}
 else{m.textContent='No authorization data found.';}
 </script></body></html>
